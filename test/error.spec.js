@@ -28,6 +28,7 @@ describe('Custom Error', function() {
 		} catch (e) {
 			expect(e.name).to.equal('LogicalException')
 			expect(e.code).to.equal(503)
+      expect(e.message).to.equal('Something bad happended')
 			expect(e instanceof NE.LogicalException).to.equal(true)
 			expect(e instanceof Error).to.equal(true)
 			expect(util.isError(e)).to.equal(true)
@@ -93,6 +94,7 @@ describe('Custom Error', function() {
 		} catch (e) {
 			expect(e.name).to.equal('CustomException')
 			expect(e.code).to.equal(500)
+      expect(e.message).to.equal('Custom error')
 			expect(e instanceof NE.LogicalException).to.equal(true)
 			expect(e instanceof Error).to.equal(true)
 			expect(util.isError(e)).to.equal(true)
@@ -101,6 +103,6 @@ describe('Custom Error', function() {
 			expect(e.toString()).to.equal('CustomException: Custom error')
 			expect(e.stack.split('\n')[0]).to.equal('CustomException: Custom error')
 		}
-	})	
+	})
 
 })
