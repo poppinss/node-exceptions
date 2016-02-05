@@ -1,6 +1,6 @@
 {
   "name": "node-exceptions",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "personalized and extendable exception class for nodejs",
   "main": "index.js",
   "scripts": {
