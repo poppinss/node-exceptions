@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
 */
 
-module.exports = function LogicalException (message, code) {
+module.exports = function LogicalException (message, status) {
   Error.captureStackTrace(this, this.constructor)
   this.name = this.constructor.name
   this.message = message
-  this.code = code || 500
+  this.status = status || 500
 }
 
 require('util').inherits(module.exports, Error)

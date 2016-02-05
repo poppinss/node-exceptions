@@ -38,7 +38,7 @@ class MyCustomError extends NE.LogicalException {}
 try {
   throw new MyCustomError('Something bad happened')
 } catch (e) {
-  console.log(e.code) // equals 500
+  console.log(e.status) // equals 500
   console.log(e.name) // equals MyCustomError
   console.log(e.message) // Something bad happened
   console.log(e.stack) // Error stack with correct reference to filepath and linenum
@@ -46,8 +46,8 @@ try {
 }
 ```
 
-## Custom error code
-It is also possible to have a custom error code when throwing exceptions.
+## Custom error status
+It is also possible to have a custom error status when throwing exceptions.
 
 ```javascript
 const NE = require('node-exceptions')
@@ -57,7 +57,7 @@ class HttpException extends NE.LogicalException {}
 try {
   throw new HttpException('Page not found', 404)
 } catch (e) {
-  console.log(e.code) // equals 404
+  console.log(e.status) // equals 404
 }
 ```
 
