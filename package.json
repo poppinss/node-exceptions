@@ -1,12 +1,15 @@
 {
   "name": "node-exceptions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "personalized and extendable exception class for nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "npm run standard && istanbul cover _mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
+    "test": "npm run lint && istanbul cover _mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
     "coverage": "istanbul cover _mocha test --bail",
-    "standard": "standard src/**/*.js index.js"
+    "lint": "standard src/**/*.js test/*.js index.js"
+  },
+  "standard": {
+    "global": ["it", "describe"]
   },
   "keywords": [
     "exception",
