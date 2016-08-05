@@ -105,4 +105,16 @@ describe('Custom Error', function() {
 		}
 	})
 
+  it('should be able to define code for a given exception', function () {
+    try {
+      throw new NE.LogicalException('Invalid range', 500, 'INVRAN')
+      expect(true).to.equal(false)
+    } catch (e) {
+      expect(e.name).to.equal('LogicalException')
+      expect(e.status).to.equal(500)
+      expect(e.code).to.equal('INVRAN')
+    }
+  })
+
+
 })
