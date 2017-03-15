@@ -9,12 +9,51 @@
  * file that was distributed with this source code.
 */
 
-module.exports = function LogicalException (message, status, code) {
-  Error.captureStackTrace(this, this.constructor)
-  this.name = this.constructor.name
-  this.message = code ? `${code}: ${message}` : message
-  this.status = status || 500
-  this.code = code
+class LogicalException extends Error {
+  constructor (message, status, code) {
+    super(message)
+
+    // extending Error is weird and does not propagate `message`
+    Object.defineProperty(this, 'message', {
+      configurable: true,
+      enumerable: false,
+      value: code ? `${code}: ${message}` : message,
+      writable: true
+    })
+
+    Object.defineProperty(this, 'name', {
+      configurable: true,
+      enumerable: false,
+      value: this.constructor.name,
+      writable: true
+    })
+
+    Object.defineProperty(this, 'status', {
+      configurable: true,
+      enumerable: false,
+      value: status || 500,
+      writable: true
+    })
+
+    Object.defineProperty(this, 'code', {
+      configurable: true,
+      enumerable: false,
+      value: code,
+      writable: true
+    })
+
+    if (Error.hasOwnProperty('captureStackTrace')) {
+      Error.captureStackTrace(this, this.constructor)
+      return
+    }
+
+    Object.defineProperty(this, 'stack', {
+      configurable: true,
+      enumerable: false,
+      value: (new Error(message)).stack,
+      writable: true
+    })
+  }
 }
 
-require('util').inherits(module.exports, Error)
+module.exports = LogicalException
