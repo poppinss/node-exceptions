@@ -1,3 +1,8 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/poppinss/node-exceptions/compare/v1.0.3...v2.0.0) (2017-03-15)
+
+
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/poppinss/node-exceptions/compare/v1.0.2...v1.0.3) (2016-08-08)
 
