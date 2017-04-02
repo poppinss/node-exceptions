@@ -1,15 +1,10 @@
 {
   "name": "node-exceptions",
-  "version": "2.0.0",
-  "description": "personalized and extendable exception class for nodejs",
+  "version": "2.0.1",
+  "description": "Extendable error class for nodejs to extend native errors",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && istanbul cover _mocha --report lcovonly -- -R spec test && cat ./coverage/lcov.info | coveralls && rm -rf ./coverage",
-    "coverage": "istanbul cover _mocha test --bail",
-    "lint": "standard src/**/*.js test/*.js index.js"
-  },
-  "standard": {
-    "global": ["it", "describe"]
+    "lint": "standard"
   },
   "keywords": [
     "exception",
@@ -20,12 +15,10 @@
   "author": "amanvirk,adonisjs",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.5.0",
     "coveralls": "^2.11.6",
     "cz-conventional-changelog": "^1.1.5",
-    "istanbul": "^0.4.2",
-    "mocha": "^2.4.5",
-    "mocha-lcov-reporter": "^1.0.0",
+    "japa": "^1.0.3",
+    "japa-cli": "^1.0.1",
     "standard": "^5.4.1"
   },
   "config": {
