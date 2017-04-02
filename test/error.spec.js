@@ -9,101 +9,107 @@
  * file that was distributed with this source code.
 */
 
-const NE = require('../index')
-const chai = require('chai')
+const test = require('japa')
 const util = require('util')
-const expect = chai.expect
+const NE = require('../index')
 
-describe('Custom Error', function () {
-  it('should be able to throw exceptions using NE', function () {
+test.group('Custom Error', function () {
+  test('should be able to throw exceptions using NE', function (assert) {
+    assert.plan(11)
     function doSomethingBad () {
       throw new NE.LogicalException('Something bad happended', 503)
     }
 
     try {
       doSomethingBad()
-      expect(true).to.equal(false)
     } catch (e) {
-      expect(e.name).to.equal('LogicalException')
-      expect(e.status).to.equal(503)
-      expect(e.message).to.equal('Something bad happended')
-      expect(e instanceof NE.LogicalException).to.equal(true)
-      expect(e instanceof Error).to.equal(true)
-      expect(util.isError(e)).to.equal(true)
-      expect(e.stack).not.to.equal(undefined)
-      expect(e.toString).to.be.a('function')
-      expect(e.toString()).to.equal('LogicalException: Something bad happended')
-      expect(e.stack.split('\n')[0]).to.equal('LogicalException: Something bad happended')
-      expect(e.stack.split('\n')[1].indexOf('doSomethingBad')).to.be.at.least(0)
+      assert.equal(e.name, 'LogicalException')
+      assert.equal(e.status, 503)
+      assert.equal(e.message, 'Something bad happended')
+      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof Error, true)
+      assert.equal(util.isError(e), true)
+      assert.notEqual(e.stack, undefined)
+      assert.isFunction(e.toString)
+      assert.equal(e.toString(), 'LogicalException: Something bad happended')
+      assert.equal(e.stack.split('\n')[0], 'LogicalException: Something bad happended')
+      assert.isAtLeast(e.stack.split('\n')[1].indexOf('doSomethingBad'), 0)
     }
   })
 
-  it('should have a DomainException class', function () {
+  test('should have a DomainException class', function (assert) {
+    assert.plan(1)
     try {
       throw new NE.DomainException('Not a valid image type')
     } catch (e) {
-      expect(e.name).to.equal('DomainException')
+      assert.equal(e.name, 'DomainException')
     }
   })
 
-  it('should have an InvalidArgumentException class', function () {
+  test('should have an InvalidArgumentException class', function (assert) {
+    assert.plan(1)
     try {
       throw new NE.InvalidArgumentException('Not a valid image type')
     } catch (e) {
-      expect(e.name).to.equal('InvalidArgumentException')
+      assert.equal(e.name, 'InvalidArgumentException')
     }
   })
 
-  it('should have a RangeException class', function () {
+  test('should have a RangeException class', function (assert) {
+    assert.plan(1)
     try {
       throw new NE.RangeException('Invalid range')
     } catch (e) {
-      expect(e.name).to.equal('RangeException')
+      assert.equal(e.name, 'RangeException')
     }
   })
 
-  it('should have a RuntimeException class', function () {
+  test('should have a RuntimeException class', function (assert) {
+    assert.plan(1)
     try {
       throw new NE.RuntimeException('Something bad happended')
     } catch (e) {
-      expect(e.name).to.equal('RuntimeException')
+      assert.equal(e.name, 'RuntimeException')
     }
   })
 
-  it('should have a HttpException class', function () {
+  test('should have a HttpException class', function (assert) {
+    assert.plan(1)
     try {
       throw new NE.HttpException('404 is returned')
     } catch (e) {
-      expect(e.name).to.equal('HttpException')
+      assert.equal(e.name, 'HttpException')
     }
   })
 
-  it('should be able to extend any exception and still have proper properties', function () {
+  test('should be able to extend any exception and still have proper properties', function (assert) {
+    assert.plan(10)
     class CustomException extends NE.LogicalException {
     }
     try {
       throw new CustomException('Custom error')
     } catch (e) {
-      expect(e.name).to.equal('CustomException')
-      expect(e.status).to.equal(500)
-      expect(e.message).to.equal('Custom error')
-      expect(e instanceof NE.LogicalException).to.equal(true)
-      expect(e instanceof Error).to.equal(true)
-      expect(util.isError(e)).to.equal(true)
-      expect(e.stack).not.to.equal(undefined)
-      expect(e.toString).to.be.a('function')
-      expect(e.toString()).to.equal('CustomException: Custom error')
-      expect(e.stack.split('\n')[0]).to.equal('CustomException: Custom error')
+      assert.equal(e.name, 'CustomException')
+      assert.equal(e.status, 500)
+      assert.equal(e.message, 'Custom error')
+      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof Error, true)
+      assert.equal(util.isError(e), true)
+      assert.notEqual(e.stack, undefined)
+      assert.isFunction(e.toString)
+      assert.equal(e.toString(), 'CustomException: Custom error')
+      assert.equal(e.stack.split('\n')[0], 'CustomException: Custom error')
     }
   })
 
-  it('should be able to define code for a given exception', function () {
+  test('should be able to define code for a given exception', function (assert) {
+    assert.plan(3)
     try {
       throw new NE.LogicalException('Invalid range', 500, 'INVRAN')
     } catch (e) {
-      expect(e.name).to.equal('LogicalException')
-      expect(e.status).to.equal(500)
-      expect(e.code).to.equal('INVRAN')
+      assert.equal(e.name, 'LogicalException')
+      assert.equal(e.status, 500)
+      assert.equal(e.code, 'INVRAN')
     }
   })
 })
