@@ -9,6 +9,12 @@
  * file that was distributed with this source code.
 */
 
+/**
+ * LogicalException is a netural class extend
+ * the Error object.
+ *
+ * @class LogicalException
+ */
 class LogicalException extends Error {
   constructor (message, status, code) {
     super(message)
