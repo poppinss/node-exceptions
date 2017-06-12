@@ -19,6 +19,7 @@
     "cz-conventional-changelog": "^1.1.5",
     "japa": "^1.0.3",
     "japa-cli": "^1.0.1",
+    "nyc": "^10.2.0",
     "standard": "^5.4.1"
   },
   "config": {
