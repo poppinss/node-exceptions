@@ -4,7 +4,13 @@
   "description": "Extendable error class for nodejs to extend native errors",
   "main": "index.js",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "posttest": "npm run coverage",
+    "test:local": "japa",
+    "test": "./node_modules/.bin/nyc npm run test:local",
+    "test:win": "./node_modules/japa-cli/index.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "exception",
