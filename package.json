@@ -1,10 +1,16 @@
 {
   "name": "node-exceptions",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Extendable error class for nodejs to extend native errors",
   "main": "index.js",
   "scripts": {
-    "lint": "standard"
+    "lint": "standard",
+    "pretest": "npm run lint",
+    "posttest": "npm run coverage",
+    "test:local": "japa",
+    "test": "./node_modules/.bin/nyc npm run test:local",
+    "test:win": "node ./node_modules/japa-cli/index.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "keywords": [
     "exception",
@@ -19,6 +25,7 @@
     "cz-conventional-changelog": "^1.1.5",
     "japa": "^1.0.3",
     "japa-cli": "^1.0.1",
+    "nyc": "^10.2.0",
     "standard": "^5.4.1"
   },
   "config": {

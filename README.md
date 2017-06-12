@@ -1,11 +1,13 @@
-Node Exceptions
+# Node Exceptions
 
-![](http://i1117.photobucket.com/albums/k594/thetutlage/poppins-1_zpsg867sqyl.png)
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Appveyor][appveyor-image]][appveyor-url]
+[![Coveralls][coveralls-image]][coveralls-url]
 
-[![Version](https://img.shields.io/npm/v/node-exceptions.svg?style=flat-square)](https://www.npmjs.com/package/node-exceptions)
-[![Build Status](https://img.shields.io/travis/poppinss/node-exceptions/master.svg?style=flat-square)](https://travis-ci.org/poppinss/node-exceptions)
-[![Coverage Status](https://img.shields.io/coveralls/poppinss/node-exceptions/master.svg?style=flat-square)](https://coveralls.io/github/poppinss/node-exceptions?branch=master)
-[![License](https://img.shields.io/npm/l/node-exceptions.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+<a href="http://i1117.photobucket.com/albums/k594/thetutlage/poppins-1_zpsg867sqyl.png">
+<img src="http://i1117.photobucket.com/albums/k594/thetutlage/poppins-1_zpsg867sqyl.png" width="300px" align="right" vspace="20px" />
+</a>
 
 Throwing errors in Javascript does not give much information about the error type as it is really hard to throw custom exceptions. Node Exceptions is a tiny wrapper which will let you extend the Error class and throw custom errors.
 
@@ -97,3 +99,17 @@ Http specific errors.
 ```javascript
 throw new NE.HttpException()
 ```
+
+[appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/node-exceptions/master.svg?style=flat-square
+
+[appveyor-url]: https://ci.appveyor.com/project/thetutlage/node-exceptions
+
+[npm-image]: https://img.shields.io/npm/v/node-exceptions.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/node-exceptions
+
+[travis-image]: https://img.shields.io/travis/poppinss/node-exceptions/master.svg?style=flat-square
+[travis-url]: https://travis-ci.org/poppinss/node-exceptions
+
+[coveralls-image]: https://img.shields.io/coveralls/poppinss/node-exceptions/develop.svg?style=flat-square
+
+[coveralls-url]: https://coveralls.io/github/poppinss/node-exceptions%
