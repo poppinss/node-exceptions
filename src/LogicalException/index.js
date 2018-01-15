@@ -16,8 +16,13 @@
  * @class LogicalException
  */
 class LogicalException extends Error {
-  constructor (message, status, code) {
+  constructor (message, status, code, errShLink) {
     super(message)
+
+    /**
+     * When an err.sh link is provided, we append a new line to the error message
+     */
+    message = errShLink ? `${message}\n> More details: https://err.sh/${errShLink}/${code}` : message
 
     // extending Error is weird and does not propagate `message`
     Object.defineProperty(this, 'message', {
