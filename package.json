@@ -1,6 +1,6 @@
 {
   "name": "node-exceptions",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Extendable error class for nodejs to extend native errors",
   "main": "index.js",
   "scripts": {
@@ -21,12 +21,12 @@
   "author": "amanvirk,adonisjs",
   "license": "MIT",
   "devDependencies": {
-    "coveralls": "^2.11.6",
-    "cz-conventional-changelog": "^1.1.5",
-    "japa": "^1.0.3",
+    "coveralls": "^3.0.0",
+    "cz-conventional-changelog": "^2.1.0",
+    "japa": "^1.0.6",
     "japa-cli": "^1.0.1",
-    "nyc": "^10.2.0",
-    "standard": "^5.4.1"
+    "nyc": "^11.4.1",
+    "standard": "^10.0.3"
   },
   "config": {
     "commitizen": {

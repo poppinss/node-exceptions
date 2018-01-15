@@ -1,3 +1,13 @@
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/poppinss/node-exceptions/compare/v2.0.2...v3.0.0) (2018-01-15)
+
+
+### Features
+
+* **err.sh:** add support for err.sh ([e72c264](https://github.com/poppinss/node-exceptions/commit/e72c264))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/poppinss/node-exceptions/compare/v2.0.1...v2.0.2) (2017-06-12)
 

@@ -10,12 +10,11 @@
 */
 
 const test = require('japa')
-const util = require('util')
 const NE = require('../index')
 
 test.group('Custom Error', function () {
   test('should be able to throw exceptions using NE', function (assert) {
-    assert.plan(11)
+    assert.plan(10)
     function doSomethingBad () {
       throw new NE.LogicalException('Something bad happended', 503)
     }
@@ -28,7 +27,6 @@ test.group('Custom Error', function () {
       assert.equal(e.message, 'Something bad happended')
       assert.equal(e instanceof NE.LogicalException, true)
       assert.equal(e instanceof Error, true)
-      assert.equal(util.isError(e), true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
       assert.equal(e.toString(), 'LogicalException: Something bad happended')
@@ -83,7 +81,7 @@ test.group('Custom Error', function () {
   })
 
   test('should be able to extend any exception and still have proper properties', function (assert) {
-    assert.plan(10)
+    assert.plan(9)
     class CustomException extends NE.LogicalException {
     }
     try {
@@ -94,7 +92,6 @@ test.group('Custom Error', function () {
       assert.equal(e.message, 'Custom error')
       assert.equal(e instanceof NE.LogicalException, true)
       assert.equal(e instanceof Error, true)
-      assert.equal(util.isError(e), true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
       assert.equal(e.toString(), 'CustomException: Custom error')
@@ -110,6 +107,28 @@ test.group('Custom Error', function () {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 500)
       assert.equal(e.code, 'INVRAN')
+    }
+  })
+
+  test('append err.sh line when link is provided', function (assert) {
+    assert.plan(10)
+    function doSomethingBad () {
+      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+    }
+
+    try {
+      doSomethingBad()
+    } catch (e) {
+      assert.equal(e.name, 'LogicalException')
+      assert.equal(e.status, 503)
+      assert.equal(e.message, 'E_BAD: Something bad happended\n> More details: https://err.sh/adonisjs/errors/E_BAD')
+      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof Error, true)
+      assert.notEqual(e.stack, undefined)
+      assert.isFunction(e.toString)
+      assert.equal(e.toString(), 'LogicalException: E_BAD: Something bad happended\n> More details: https://err.sh/adonisjs/errors/E_BAD')
+      assert.equal(e.stack.split('\n')[0], 'LogicalException: E_BAD: Something bad happended')
+      assert.isAtLeast(e.stack.split('\n')[2].indexOf('doSomethingBad'), 0)
     }
   })
 })
