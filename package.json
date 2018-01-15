@@ -1,6 +1,6 @@
 {
   "name": "node-exceptions",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "Extendable error class for nodejs to extend native errors",
   "main": "index.js",
   "scripts": {
