@@ -112,6 +112,9 @@ test.group('Custom Error', function () {
 
   test('append err.sh line when link is provided', function (assert) {
     assert.plan(10)
+
+    process.env.NODE_ENV = 'development'
+
     function doSomethingBad () {
       throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
     }
@@ -129,6 +132,52 @@ test.group('Custom Error', function () {
       assert.equal(e.toString(), 'LogicalException: E_BAD: Something bad happended\n> More details: https://err.sh/adonisjs/errors/E_BAD')
       assert.equal(e.stack.split('\n')[0], 'LogicalException: E_BAD: Something bad happended')
       assert.isAtLeast(e.stack.split('\n')[2].indexOf('doSomethingBad'), 0)
+    }
+  })
+
+  test('don\'t append err.sh line when environment is not development', function (assert) {
+    assert.plan(8)
+
+    process.env.NODE_ENV = 'production'
+
+    function doSomethingBad () {
+      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+    }
+
+    try {
+      doSomethingBad()
+    } catch (e) {
+      assert.equal(e.name, 'LogicalException')
+      assert.equal(e.status, 503)
+      assert.equal(e.message, 'E_BAD: Something bad happended')
+      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof Error, true)
+      assert.notEqual(e.stack, undefined)
+      assert.isFunction(e.toString)
+      assert.equal(e.toString(), 'LogicalException: E_BAD: Something bad happended')
+    }
+  })
+
+  test('don\'t append err.sh line when environment is undefined', function (assert) {
+    assert.plan(8)
+
+    process.env.NODE_ENV = undefined
+
+    function doSomethingBad () {
+      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+    }
+
+    try {
+      doSomethingBad()
+    } catch (e) {
+      assert.equal(e.name, 'LogicalException')
+      assert.equal(e.status, 503)
+      assert.equal(e.message, 'E_BAD: Something bad happended')
+      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof Error, true)
+      assert.notEqual(e.stack, undefined)
+      assert.isFunction(e.toString)
+      assert.equal(e.toString(), 'LogicalException: E_BAD: Something bad happended')
     }
   })
 })

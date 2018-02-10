@@ -22,7 +22,10 @@ class LogicalException extends Error {
     /**
      * When an err.sh link is provided, we append a new line to the error message
      */
-    message = errShLink ? `${message}\n> More details: https://err.sh/${errShLink}/${code}` : message
+    const isDev = process.env.NODE_ENV && /dev/i.test(process.env.NODE_ENV)
+    if (isDev && errShLink) {
+      message = `${message}\n> More details: https://err.sh/${errShLink}/${code}`
+    }
 
     // extending Error is weird and does not propagate `message`
     Object.defineProperty(this, 'message', {
