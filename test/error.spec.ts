@@ -17,7 +17,7 @@ import {
   InvalidArgumentException,
   RangeException,
   HttpException,
-} from '../'
+} from '../src/index'
 
 test.group('Custom Error', () => {
   test('should be able to throw exceptions using NE', (assert) => {

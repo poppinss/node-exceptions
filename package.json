@@ -2,7 +2,10 @@
   "name": "node-exceptions",
   "version": "3.0.0",
   "description": "Extendable error class for nodejs to extend native errors",
-  "main": "index.js",
+  "main": "build/src/index.js",
+  "files": [
+    "build/src"
+  ],
   "scripts": {
     "mrm": "mrm --preset=@adonisjs/mrm-preset",
     "pretest": "npm run lint",
@@ -11,7 +14,7 @@
     "lint": "tslint --project tsconfig.json",
     "clean": "del build",
     "compile": "npm run lint && npm run clean && tsc",
-    "build": "npm run compile",
+    "build": "npm run compile && typedoc --theme minimal",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "commit": "git-cz"
   },
@@ -25,12 +28,13 @@
   "license": "MIT",
   "devDependencies": {
     "@adonisjs/mrm-preset": "^1.0.14",
+    "@types/chai": "^4.1.6",
     "@types/node": "^10.12.0",
     "commitizen": "^3.0.4",
     "coveralls": "^3.0.2",
     "cz-conventional-changelog": "^2.1.0",
     "del-cli": "^1.1.0",
-    "japa": "^2.0.5",
+    "japa": "^2.0.6",
     "japa-cli": "^1.0.1",
     "mrm": "^1.2.1",
     "nyc": "^13.1.0",
@@ -38,6 +42,9 @@
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
     "tslint-eslint-rules": "^5.4.0",
+    "typedoc": "^0.13.0",
+    "typedoc-plugin-external-module-name": "^1.1.3",
+    "typedoc-plugin-single-line-tags": "^1.0.0",
     "typescript": "^3.1.3",
     "yorkie": "^2.0.0"
   },

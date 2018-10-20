@@ -1,4 +1,8 @@
 /**
+ * @module main
+ */
+
+/**
  * node-exceptions
  *
  * (c) Harminder Virk <virk@adonisjs.com>
@@ -17,13 +21,15 @@ interface IExtendedError {
 /**
  * Base exception to extend the error class to allow additional properties.
  *
+ * @class BaseException
+ *
  * The exception allows
  * 1. message - Error message
  * 2. status - Error status in number. Helpful to define the HTTP status code
  * 3. code - Unique error code
  * 4. link - Know more link
  */
-class LogicalException extends Error {
+class BaseException extends Error {
   constructor (message: string, status: number = 500, code?: string, link?: string) {
     super(message)
 
@@ -95,5 +101,5 @@ class LogicalException extends Error {
   }
 }
 
-interface LogicalException extends IExtendedError { }
-export { LogicalException }
+interface BaseException extends IExtendedError { }
+export { BaseException }

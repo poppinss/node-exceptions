@@ -1,4 +1,6 @@
-'use strict'
+/**
+ * @module main
+ */
 
 /**
  * node-exceptions
@@ -9,9 +11,9 @@
  * file that was distributed with this source code.
 */
 
-import { LogicalException } from './src/LogicalException'
+import { BaseException } from './BaseException'
 
-export { LogicalException }
+export class LogicalException extends BaseException {}
 export class DomainException extends LogicalException {}
 export class InvalidArgumentException extends LogicalException {}
 export class RangeException extends LogicalException {}
