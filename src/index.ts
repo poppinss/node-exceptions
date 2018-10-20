@@ -14,8 +14,8 @@
 import { BaseException } from './BaseException'
 
 export class LogicalException extends BaseException {}
-export class DomainException extends LogicalException {}
-export class InvalidArgumentException extends LogicalException {}
-export class RangeException extends LogicalException {}
-export class RuntimeException extends LogicalException {}
-export class HttpException extends LogicalException {}
+export class DomainException extends BaseException {}
+export class InvalidArgumentException extends BaseException {}
+export class RangeException extends BaseException {}
+export class RuntimeException extends BaseException {}
+export class HttpException extends BaseException {}
