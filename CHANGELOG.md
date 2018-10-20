@@ -1,3 +1,8 @@
+<a name="4.0.1"></a>
+## [4.0.1](https://github.com/poppinss/node-exceptions/compare/4.0.0...4.0.1) (2018-10-20)
+
+
+
 <a name="4.0.0"></a>
 # [4.0.0](https://github.com/poppinss/node-exceptions/compare/v3.0.0...v4.0.0) (2018-10-20)
 

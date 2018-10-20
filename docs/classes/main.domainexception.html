@@ -914,13 +914,19 @@ img { max-width: 100%; }
 					<a href="main.domainexception.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a href="main.domainexception.html#code" class="tsd-kind-icon">code</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a href="main.domainexception.html#message" class="tsd-kind-icon">message</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a href="main.domainexception.html#name" class="tsd-kind-icon">name</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 					<a href="main.domainexception.html#stack" class="tsd-kind-icon">stack</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+					<a href="main.domainexception.html#status" class="tsd-kind-icon">status</a>
 				</li>
 			</ul>
 		</li>
@@ -947,7 +953,7 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<a href="main.logicalexception.html" class="tsd-signature-type">LogicalException</a>
+					<span class="tsd-signature-type">BaseException</span>
 					<ul class="tsd-hierarchy">
 						<li>
 							<span class="target">DomainException</span>
@@ -969,9 +975,11 @@ img { max-width: 100%; }
 					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="main.domainexception.html#message" class="tsd-kind-icon">message</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="main.domainexception.html#name" class="tsd-kind-icon">name</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="main.domainexception.html#code" class="tsd-kind-icon">code</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="main.domainexception.html#message" class="tsd-kind-icon">message</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="main.domainexception.html#name" class="tsd-kind-icon">name</a></li>
 							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="main.domainexception.html#stack" class="tsd-kind-icon">stack</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="main.domainexception.html#status" class="tsd-kind-icon">status</a></li>
 						</ul>
 					</section>
 				</div>
@@ -990,7 +998,7 @@ img { max-width: 100%; }
 						<aside class="tsd-sources">
 							<p>Inherited from BaseException.__constructor</p>
 							<ul>
-								<li>Defined in BaseException/index.ts:32</li>
+								<li>Defined in <a href="https://github.com/poppinss/node-exceptions/blob/f62b069/src/BaseException/index.ts#L32">BaseException/index.ts:32</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1016,22 +1024,35 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="code" class="tsd-anchor"></a>
+				<h3>code</h3>
+				<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from IExtendedError.code</p>
+					<ul>
+						<li>Defined in <a href="https://github.com/poppinss/node-exceptions/blob/f62b069/src/BaseException/index.ts#L17">BaseException/index.ts:17</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 				<a name="message" class="tsd-anchor"></a>
 				<h3>message</h3>
 				<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<p>Inherited from Error.message</p>
+					<p>Overrides IExtendedError.message</p>
 					<ul>
 						<li>Defined in /Users/virk/code/adonis5/node-exceptions/node_modules/typescript/lib/lib.es5.d.ts:904</li>
 					</ul>
 				</aside>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
 				<a name="name" class="tsd-anchor"></a>
 				<h3>name</h3>
 				<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<p>Inherited from Error.name</p>
+					<p>Overrides IExtendedError.name</p>
 					<ul>
 						<li>Defined in /Users/virk/code/adonis5/node-exceptions/node_modules/typescript/lib/lib.es5.d.ts:903</li>
 					</ul>
@@ -1046,6 +1067,17 @@ img { max-width: 100%; }
 					<p>Overrides Error.stack</p>
 					<ul>
 						<li>Defined in /Users/virk/code/adonis5/node-exceptions/node_modules/typescript/lib/lib.es5.d.ts:905</li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited">
+				<a name="status" class="tsd-anchor"></a>
+				<h3>status</h3>
+				<div class="tsd-signature tsd-kind-icon">status<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from IExtendedError.status</p>
+					<ul>
+						<li>Defined in <a href="https://github.com/poppinss/node-exceptions/blob/f62b069/src/BaseException/index.ts#L18">BaseException/index.ts:18</a></li>
 					</ul>
 				</aside>
 			</section>

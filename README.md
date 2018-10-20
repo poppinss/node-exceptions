@@ -63,42 +63,8 @@ try {
 }
 ```
 
-Also `NE` comes with some commonly required Exception classes which includes.
-
-#### DomainException 
-When something excepted has failed. For example image upload mismatch extension.
-
-```javascript
-throw new NE.DomainException()
-```
-
-#### InvalidArgumentException
-Method arguments are invalid or incomplete.
-
-```javascript
-throw new NE.InvalidArgumentException()
-```
-
-#### RangeException
-Error caused due to arithmetic operations.
-
-```javascript
-throw new NE.RangeException()
-```
-
-#### RuntimeException
-An error occured after all required checks.
-
-```javascript
-throw new NE.RuntimeException()
-```
-
-#### HttpException
-Http specific errors.
-
-```javascript
-throw new NE.HttpException()
-```
+## API Docs
+Access complete API Docs [here](https://poppinss.github.io/node-exceptions/docs/index.html)
 
 [appveyor-image]: https://img.shields.io/appveyor/ci/thetutlage/node-exceptions/master.svg?style=flat-square
 
