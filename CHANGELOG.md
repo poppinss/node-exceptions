@@ -1,3 +1,20 @@
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/poppinss/node-exceptions/compare/v3.0.0...v4.0.0) (2018-10-20)
+
+
+### Features
+
+* **message:** only show errSh link if node env is development ([#3](https://github.com/poppinss/node-exceptions/issues/3)) ([ceaf9c5](https://github.com/poppinss/node-exceptions/commit/ceaf9c5)), closes [#2](https://github.com/poppinss/node-exceptions/issues/2)
+* **rewrite:** redo in typescript ([c04e145](https://github.com/poppinss/node-exceptions/commit/c04e145))
+
+
+### BREAKING CHANGES
+
+* **rewrite:** the 4th argument (errShLink) passed to the constructor now no longer prefixes the
+err.sh domain and expects a complete HTTP url
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/poppinss/node-exceptions/compare/v2.0.2...v3.0.0) (2018-01-15)
 
