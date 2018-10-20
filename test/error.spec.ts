@@ -9,14 +9,21 @@
  * file that was distributed with this source code.
 */
 
-const test = require('japa')
-const NE = require('../index')
+import * as test from 'japa'
+import {
+  LogicalException,
+  DomainException,
+  RuntimeException,
+  InvalidArgumentException,
+  RangeException,
+  HttpException,
+} from '../'
 
-test.group('Custom Error', function () {
-  test('should be able to throw exceptions using NE', function (assert) {
+test.group('Custom Error', () => {
+  test('should be able to throw exceptions using NE', (assert) => {
     assert.plan(10)
     function doSomethingBad () {
-      throw new NE.LogicalException('Something bad happended', 503)
+      throw new LogicalException('Something bad happended', 503)
     }
 
     try {
@@ -25,7 +32,7 @@ test.group('Custom Error', function () {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 503)
       assert.equal(e.message, 'Something bad happended')
-      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof LogicalException, true)
       assert.equal(e instanceof Error, true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
@@ -35,54 +42,54 @@ test.group('Custom Error', function () {
     }
   })
 
-  test('should have a DomainException class', function (assert) {
+  test('should have a DomainException class', (assert) => {
     assert.plan(1)
     try {
-      throw new NE.DomainException('Not a valid image type')
+      throw new DomainException('Not a valid image type')
     } catch (e) {
       assert.equal(e.name, 'DomainException')
     }
   })
 
-  test('should have an InvalidArgumentException class', function (assert) {
+  test('should have an InvalidArgumentException class', (assert) => {
     assert.plan(1)
     try {
-      throw new NE.InvalidArgumentException('Not a valid image type')
+      throw new InvalidArgumentException('Not a valid image type')
     } catch (e) {
       assert.equal(e.name, 'InvalidArgumentException')
     }
   })
 
-  test('should have a RangeException class', function (assert) {
+  test('should have a RangeException class', (assert) => {
     assert.plan(1)
     try {
-      throw new NE.RangeException('Invalid range')
+      throw new RangeException('Invalid range')
     } catch (e) {
       assert.equal(e.name, 'RangeException')
     }
   })
 
-  test('should have a RuntimeException class', function (assert) {
+  test('should have a RuntimeException class', (assert) => {
     assert.plan(1)
     try {
-      throw new NE.RuntimeException('Something bad happended')
+      throw new RuntimeException('Something bad happended')
     } catch (e) {
       assert.equal(e.name, 'RuntimeException')
     }
   })
 
-  test('should have a HttpException class', function (assert) {
+  test('should have a HttpException class', (assert) => {
     assert.plan(1)
     try {
-      throw new NE.HttpException('404 is returned')
+      throw new HttpException('404 is returned')
     } catch (e) {
       assert.equal(e.name, 'HttpException')
     }
   })
 
-  test('should be able to extend any exception and still have proper properties', function (assert) {
+  test('should be able to extend any exception and still have proper properties', (assert) => {
     assert.plan(9)
-    class CustomException extends NE.LogicalException {
+    class CustomException extends LogicalException {
     }
     try {
       throw new CustomException('Custom error')
@@ -90,7 +97,7 @@ test.group('Custom Error', function () {
       assert.equal(e.name, 'CustomException')
       assert.equal(e.status, 500)
       assert.equal(e.message, 'Custom error')
-      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof LogicalException, true)
       assert.equal(e instanceof Error, true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
@@ -99,10 +106,10 @@ test.group('Custom Error', function () {
     }
   })
 
-  test('should be able to define code for a given exception', function (assert) {
+  test('should be able to define code for a given exception', (assert) => {
     assert.plan(3)
     try {
-      throw new NE.LogicalException('Invalid range', 500, 'INVRAN')
+      throw new LogicalException('Invalid range', 500, 'INVRAN')
     } catch (e) {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 500)
@@ -110,13 +117,13 @@ test.group('Custom Error', function () {
     }
   })
 
-  test('append err.sh line when link is provided', function (assert) {
+  test('append link line when link is provided', (assert) => {
     assert.plan(10)
 
     process.env.NODE_ENV = 'development'
 
     function doSomethingBad () {
-      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+      throw new LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs.com/errors')
     }
 
     try {
@@ -124,24 +131,27 @@ test.group('Custom Error', function () {
     } catch (e) {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 503)
-      assert.equal(e.message, 'E_BAD: Something bad happended\n> More details: https://err.sh/adonisjs/errors/E_BAD')
-      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e.message, 'E_BAD: Something bad happended\n> More details: adonisjs.com/errors/E_BAD')
+      assert.equal(e instanceof LogicalException, true)
       assert.equal(e instanceof Error, true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
-      assert.equal(e.toString(), 'LogicalException: E_BAD: Something bad happended\n> More details: https://err.sh/adonisjs/errors/E_BAD')
+      assert.equal(
+        e.toString(),
+        'LogicalException: E_BAD: Something bad happended\n> More details: adonisjs.com/errors/E_BAD',
+      )
       assert.equal(e.stack.split('\n')[0], 'LogicalException: E_BAD: Something bad happended')
       assert.isAtLeast(e.stack.split('\n')[2].indexOf('doSomethingBad'), 0)
     }
   })
 
-  test('don\'t append err.sh line when environment is not development', function (assert) {
+  test('don\'t append err.sh line when environment is not development', (assert) => {
     assert.plan(8)
 
     process.env.NODE_ENV = 'production'
 
     function doSomethingBad () {
-      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+      throw new LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
     }
 
     try {
@@ -150,7 +160,7 @@ test.group('Custom Error', function () {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 503)
       assert.equal(e.message, 'E_BAD: Something bad happended')
-      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof LogicalException, true)
       assert.equal(e instanceof Error, true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
@@ -158,13 +168,13 @@ test.group('Custom Error', function () {
     }
   })
 
-  test('don\'t append err.sh line when environment is undefined', function (assert) {
+  test('don\'t append err.sh line when environment is undefined', (assert) => {
     assert.plan(8)
 
     process.env.NODE_ENV = undefined
 
     function doSomethingBad () {
-      throw new NE.LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
+      throw new LogicalException('Something bad happended', 503, 'E_BAD', 'adonisjs/errors')
     }
 
     try {
@@ -173,7 +183,7 @@ test.group('Custom Error', function () {
       assert.equal(e.name, 'LogicalException')
       assert.equal(e.status, 503)
       assert.equal(e.message, 'E_BAD: Something bad happended')
-      assert.equal(e instanceof NE.LogicalException, true)
+      assert.equal(e instanceof LogicalException, true)
       assert.equal(e instanceof Error, true)
       assert.notEqual(e.stack, undefined)
       assert.isFunction(e.toString)
